@@ -12,7 +12,7 @@
 <div class ="col-md-2">Date of join</div>
 <div class ="col-md-2"></div>
 </div>
-<div ng-repeat="employee in employees track by employee.empId">
+<div ng-repeat="employee in employees track by $index">
 	<hr />
 	<div class="row">
 	<div class ="col-md-2">{{employee.empId}}</div>
