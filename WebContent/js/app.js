@@ -12,10 +12,12 @@ angular.module('employeeApp', ['ngRoute'])
 			});
 			
 		}]).run(function($window){
-			$window.localStorage.emps="";
+			if(!$window.localStorage.emps && $window.localStorage.emps.length<1 ){
+			$window.localStorage.emps =[];
+			}
 		});
 function BaseController($scope, $window,EmployeeModel) {
-	$scope.employees =$window.localStorage.emps.length<1?[]:$window.localStorage.emps; 
+	$scope.employees =$window.localStorage.emps.length<1?[]:JSON.parse($window.localStorage.emps); 
 	 
 	$scope.showForm=false;
 	$scope.createEmployee=function(){
@@ -30,7 +32,7 @@ function BaseController($scope, $window,EmployeeModel) {
 		var isFormValidated = $scope.employeeForm.$valid;
 		if(isFormValidated){
 			$scope.employees.push(employee);
-			$window.localStorage.emps =$scope.employees;
+			$window.localStorage.emps =JSON.stringify($scope.employees);
 			$scope.showForm=false;
 		}
 		
@@ -38,7 +40,9 @@ function BaseController($scope, $window,EmployeeModel) {
 	$scope.deleteEntry = function(employee) {
 		for(var i =0 ; i< $scope.employees.length;i++){
 			if(employee.empId === $scope.employees[i].empId){
-				$scope.employees.pop();
+				$scope.employees.splice(i,1);
+				$window.localStorage.emps =JSON.stringify($scope.employees);
+				break;
 			}
 		}
 	}

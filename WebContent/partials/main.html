@@ -12,7 +12,7 @@
 <div class ="col-md-2">Date of join</div>
 <div class ="col-md-2"></div>
 </div>
-<div ng-repeat="employee in employees">
+<div ng-repeat="employee in employees track by employee.empId">
 	<hr />
 	<div class="row">
 	<div class ="col-md-2">{{employee.empId}}</div>
@@ -69,6 +69,6 @@
 	</div>
 	
 	<div class="col-md-6">
-		<p class="alert alert-info">Fill new employee details employee id and name are mandotary fields</p>
+		<p class="alert alert-info">Fill new employee details employee id and name are mandotary</p>
 	</div>
 	</div>
