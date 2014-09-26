@@ -12,7 +12,7 @@ angular.module('employeeApp', ['ngRoute'])
 			});
 			
 		}]).run(function($window){
-			if(!$window.localStorage.emps && $window.localStorage.emps.length<1 ){
+			if(!$window.localStorage.emps!=='undefined' && $window.localStorage.emps.length<1 ){
 			$window.localStorage.emps =[];
 			}
 		});
