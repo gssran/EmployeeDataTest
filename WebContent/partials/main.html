@@ -1,0 +1,74 @@
+<div style="float: right">
+	<button class="btn btn-default" ng-click = "createEmployee()">Add Employee</button> 
+</div>
+<div class="page-header">
+	<h3>Employees</h3>
+</div>
+<div class= "row">
+<div class ="col-md-2">EmployeeId</div>
+<div class ="col-md-2">Name</div>
+<div class ="col-md-2">Location</div>
+<div class ="col-md-2">Date of birth</div>
+<div class ="col-md-2">Date of join</div>
+<div class ="col-md-2"></div>
+</div>
+<div ng-repeat="employee in employees">
+	<hr />
+	<div class="row">
+	<div class ="col-md-2">{{employee.empId}}</div>
+		<div class ="col-md-2">{{employee.name}}</div>
+		<div class ="col-md-2">{{employee.loc}}</div>
+		<div class ="col-md-2">{{employee.dob}}</div>
+		<div class ="col-md-2">{{employee.doj}}</div>
+		<div class ="col-md-2 pull-right">
+		<button ng-click="deleteEntry(employee)" class="btn btn-xs btn-default">Remove</button>
+		<button class="btn btn-xs btn-default" ng-click = "edit(employee)" >Edit<button>
+		</div>
+	</div>
+</div>
+<hr />
+<div calss= "row" ng-show="showForm">
+<div class="col-md-6">
+		<form class="form-horizontal" name="employeeForm" role="form">
+			<div class="form-group">
+				<label for="empid" class="col-sm-3 control-label">Employee Id:</label>
+				<div class="col-sm-9">
+					<input id="empid" ng-model="employeeModel.empId" type="text" class="form-control" required="true" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="name" class="col-sm-3 control-label">Name:</label>
+				<div class="col-sm-9">
+					<input id="name" ng-model="employeeModel.name" type="text" class="form-control" required="true" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="name" class="col-sm-3 control-label">Location:</label>
+				<div class="col-sm-9">
+					<input id="name" ng-model="employeeModel.loc" type="text" class="form-control" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="name" class="col-sm-3 control-label">Date of birth:</label>
+				<div class="col-sm-9">
+					<input id="name" ng-model="employeeModel.dob" type="date" class="form-control" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="name" class="col-sm-3 control-label">Date of join:</label>
+				<div class="col-sm-9">
+					<input id="name" ng-model="employeeModel.doj" type="date" class="form-control" />
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-9 col-sm-offset-3">
+					<input type="submit" value="Save" class="btn btn-primary" ng-click="save(employeeModel)"/>
+				</div>
+			</div>
+		</form>
+	</div>
+	
+	<div class="col-md-6">
+		<p class="alert alert-info">Fill new employee details employee id and name are mandotary</p>
+	</div>
+	</div>
