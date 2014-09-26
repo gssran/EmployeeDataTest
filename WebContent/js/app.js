@@ -18,7 +18,7 @@ angular.module('employeeApp', ['ngRoute'])
 		});
 function BaseController($scope, $window,EmployeeModel) {
 	$scope.employees =$window.localStorage.emps.length<1?[]:JSON.parse($window.localStorage.emps); 
-	 
+	$scope.editMode=false; 
 	$scope.showForm=false;
 	$scope.createEmployee=function(){
 		$scope.employeeModel = EmployeeModel.getModel();
@@ -27,11 +27,15 @@ function BaseController($scope, $window,EmployeeModel) {
 	$scope.edit=function(employee){
 		$scope.employeeModel = employee;
 		$scope.showForm=true;
+		$scope.editMode=true;
 	},
 	$scope.save=function(employee){
 		var isFormValidated = $scope.employeeForm.$valid;
 		if(isFormValidated){
-			$scope.employees.push(employee);
+			if(!$scope.editMode){
+				$scope.employees.push(employee);
+			}
+			$scope.editMode = false;	
 			$window.localStorage.emps =JSON.stringify($scope.employees);
 			$scope.showForm=false;
 		}
